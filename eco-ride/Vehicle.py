@@ -13,7 +13,7 @@ class Vehicle(ABC):
 
     # ALL Abstract Methods
     @abstractmethod
-    def calculate_trip_cost(distance):
+    def calculate_trip_cost(self, distance):
         pass
 
     # --- GETTER & SETTER for maintenance_status ---

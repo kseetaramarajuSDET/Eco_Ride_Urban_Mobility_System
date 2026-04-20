@@ -3,8 +3,9 @@ from Vehicle import Vehicle
 
 class ElectricCar(Vehicle):
 
-    def calculate_trip_cost(distance):
-        pass
+    def calculate_trip_cost(self,distance):
+        # Formula: $5.00 base + $0.50 per km
+        return 5.00 + (0.50 * distance)
 
     def __init__(self, vehicle_id, model, seating_capacity):
         super().__init__(vehicle_id, model)
