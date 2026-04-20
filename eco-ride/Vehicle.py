@@ -1,10 +1,49 @@
 class Vehicle:
 
-    def __init__(self, vehicle_id, model, battery):
+    def __init__(self, vehicle_id, model):
         self.vehicle_id = vehicle_id
         self.model = model
-        self.battery = battery
+        # private members
+        self.__battery = 0
+        self.__maintenance_status = 'empty'
+        self.__rental_price = 0.0
+
+    # --- GETTER & SETTER for maintenance_status ---
+    @property
+    def maintenance_status(self):
+        return self.__maintenance_status
+
+    @maintenance_status.setter
+    def maintenance_status(self, value):
+        valid_status = ['inservice', 'good', 'needrepair']
+        if value in valid_status:
+            self.__maintenance_status = value
+        else:
+            print('Invalid maintenance status')
+
+    # --- GETTER & SETTER for battery ---
+    @property
+    def battery(self):
+        return self.__battery
+
+    @battery.setter
+    def battery(self, value):
+        if 0 <= value <= 100:
+            self.__battery = value
+        else:
+            print(f"Error: Invalid battery value {value}. Must be between 0-100.")
+
+    # --- GETTER & SETTER for Rental Price ---
+    @property
+    def rental_price(self):
+        return self.__rental_price
+
+    @rental_price.setter
+    def rental_price(self, value):
+        if value > 0:
+            self.__rental_price = value
+        else:
+            print(f"Error: Invalid rental price value {value}. Must be positive.")
 
     def __str__(self):
-        return f"Vehicle ID : {self.vehicle_id} Model : {self.model} Battery : {self.battery}"
-
+        return f" Vehicle ID : {self.vehicle_id} Model : {self.model} Battery : {self.battery} Maintenance_status : {self.maintenance_status} Rental price : {self.rental_price}"
