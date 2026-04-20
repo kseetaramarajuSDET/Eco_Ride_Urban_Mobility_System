@@ -1,4 +1,7 @@
-class Vehicle:
+from abc import ABC, abstractmethod
+
+
+class Vehicle(ABC):
 
     def __init__(self, vehicle_id, model):
         self.vehicle_id = vehicle_id
@@ -7,6 +10,11 @@ class Vehicle:
         self.__battery = 0
         self.__maintenance_status = 'empty'
         self.__rental_price = 0.0
+
+    # ALL Abstract Methods
+    @abstractmethod
+    def calculate_trip_cost(distance):
+        pass
 
     # --- GETTER & SETTER for maintenance_status ---
     @property

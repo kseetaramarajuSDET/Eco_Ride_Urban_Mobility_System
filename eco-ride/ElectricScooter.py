@@ -2,6 +2,9 @@ from Vehicle import Vehicle
 
 
 class ElectricScooter(Vehicle):
+    def calculate_trip_cost(distance):
+        pass
+
     def __init__(self, vehicle_id, model, max_speed_limit):
         super().__init__(vehicle_id, model)
         self.max_speed_limit = max_speed_limit
