@@ -6,4 +6,5 @@ class Vehicle:
         self.battery = battery
 
     def __str__(self):
-        return f'Vehicle ID : {self.vehicle_id} Model : {self.model} Battery : {self.battery}'
+        return f"Vehicle ID : {self.vehicle_id} Model : {self.model} Battery : {self.battery}"
+
