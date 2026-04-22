@@ -45,34 +45,44 @@ v2.maintenance_status = 'needrepair'
 
 
 #  UC6
-
 v3 = ElectricCar("V105", "BMW", 6)
 v3.battery = 90
 v3.rental_price = 6000
 v3.maintenance_status = 'good'
 
 # print(v3)
-
 v4 = ElectricScooter("V104", "pulser220", 50)
 v4.battery = 70
 v4.rental_price = 2000
 v4.maintenance_status = 'needrepair'
 
-vehicle_list = [v1, v2, v3, v4]
+# vehicle_list = [v1, v2, v3, v4, v1]
 
 fleet = FleetHubManager()
-fleet.add_hub()
-fleet.add_vehicle(vehicle_list)
-print("-------------------")
-fleet.add_hub()
-fleet.add_vehicle(vehicle_list)
-print("-------------------")
-fleet.add_hub()
-fleet.add_vehicle(vehicle_list)
-print("-------------------")
-fleet.add_hub()
-fleet.add_vehicle(vehicle_list)
+# fleet.add_hub()
+# fleet.add_vehicle(vehicle_list)
+# print("-------------------")
+# fleet.add_hub()
+# fleet.add_vehicle(vehicle_list)
+# print("-------------------")
+# fleet.add_hub()
+# fleet.add_vehicle(vehicle_list)
+# print("-------------------")
+# fleet.add_hub()
+# fleet.add_vehicle(vehicle_list)
+# print("-------------------")
+# fleet.add_hub()
+# fleet.add_vehicle(vehicle_list)
 
-print("-------------------")
 
+# UC8
+
+fleet.add_hub("chennai")
+fleet.add_hub("mumbai")
+fleet.add_vehicle("chennai", v1)
+fleet.add_vehicle("chennai", v2)
+fleet.add_vehicle("mumbai", v3)
+fleet.add_vehicle("mumbai", v4)
+fleet.add_vehicle("chennai", v1)
 fleet.display_all_hubs()
+

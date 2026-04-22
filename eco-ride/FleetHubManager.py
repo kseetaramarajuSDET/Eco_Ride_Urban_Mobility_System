@@ -8,8 +8,8 @@ class FleetHubManager:
     def __init__(self):
         self.__hubs = {}
 
-    def add_hub(self):
-        hub = input("Enter new Hub Name (e.g., Downtown, Airport): ").strip()
+    def add_hub(self, hub):
+        hub = hub.strip()
         if hub not in self.__hubs:
             self.__hubs[hub] = []
             print(f"Hub '{hub}' established.")
@@ -28,20 +28,26 @@ class FleetHubManager:
                 # Polymorphism in action: calling __str__ or specific methods
                 print(v)
 
-    def add_vehicle(self, vehicle_list):
-        hub_name = input("Enter Hub Name to add vehicle to: ").strip()
-
-        if hub_name not in self.__hubs:
-            print("Error: Hub not found. Please create it first.")
+    def add_vehicle(self, hub, vehicle):
+        if hub not in self.__hubs:
+            print(f"Hub '{hub}' not registered !")
             return
 
-        v_id = input("Enter Vehicle ID to move to this hub:").strip()
-
-        # Search for the vehicle in your global inventory
-        target_vehicle = next((v for v in vehicle_list if v.vehicle_id == v_id), None)
-
-        if target_vehicle:
-            self.__hubs[hub_name].append(target_vehicle)
-            print(f"Vehicle '{target_vehicle}' added to hub '{hub_name}' !")
+        if vehicle in self.__hubs[hub]:
+            print(f"ALARM: Duplicate ID '{vehicle.vehicle_id}' detected! Entry blocked.")
         else:
-            print("Error: Vehicle ID not found in system inventory.")
+            self.__hubs[hub].append(vehicle)
+            print(f"Vehicle {vehicle.vehicle_id} successfully parked in {hub}.")
+
+# hub_name = input("Enter Hub Name to add vehicle to: ").strip()
+# if hub_name not in self.__hubs:
+#     print("Error: Hub not found. Please create it first.")
+#     return
+# v_id = input("Enter Vehicle ID to move to this hub:").strip()
+# # Search for the vehicle in your global inventory
+# target_vehicle = next((v for v in vehicle_list if v.vehicle_id == v_id), None)
+# if target_vehicle:
+#     self.__hubs[hub_name].append(target_vehicle)
+#     print(f"Vehicle '{target_vehicle}' added to hub '{hub_name}' !")
+# else:
+#     print("Error: Vehicle ID not found in system inventory.")

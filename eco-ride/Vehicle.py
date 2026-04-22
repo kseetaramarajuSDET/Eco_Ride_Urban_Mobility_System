@@ -55,3 +55,10 @@ class Vehicle(ABC):
 
     def __str__(self):
         return f" Vehicle ID : {self.vehicle_id} Model : {self.model} Battery : {self.battery} Maintenance_status : {self.maintenance_status} Rental price : {self.rental_price}"
+
+    def __eq__(self, other):
+        # 1. Safety check: is the other thing a Vehicle?
+        if not isinstance(other, Vehicle):
+            return False
+        # 2. Comparison: Do they have the same ID?
+        return self.vehicle_id == other.vehicle_id
