@@ -23,7 +23,7 @@ class Vehicle(ABC):
 
     @maintenance_status.setter
     def maintenance_status(self, value):
-        valid_status = ['inservice', 'good', 'needrepair']
+        valid_status = ['Available', 'OnTrip', 'UnderMaintenance', 'Broken']
         if value in valid_status:
             self.__maintenance_status = value
         else:

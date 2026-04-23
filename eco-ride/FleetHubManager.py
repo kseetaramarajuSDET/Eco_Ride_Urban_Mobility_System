@@ -79,6 +79,31 @@ class FleetHubManager:
             else:
                 for v in v_list:
                     print(v)
+
+    def get_fleet_analytics(self, all_vehicles):
+        # UC 10: Initialize the counter dictionary
+        stats = {}
+
+        # Iterate and Tally
+        for v in all_vehicles:
+            # Assuming maintenance_status is the attribute from UC 2
+            status = v.maintenance_status
+
+            if status in stats:
+                stats[status] += 1
+            else:
+                # Handle unexpected status values
+                stats[status] = 1
+
+        # Display Result in Formatted Summary
+        print("\n" + "=" * 30)
+        print("   FLEET ANALYTICS SUMMARY")
+        print("=" * 30)
+        for status, count in stats.items():
+            print(f" {status:<18}: {count}")
+        print("=" * 30)
+        print(f" TOTAL FLEET SIZE  : {len(all_vehicles)}")
+
 # hub_name = input("Enter Hub Name to add vehicle to: ").strip()
 # if hub_name not in self.__hubs:
 #     print("Error: Hub not found. Please create it first.")
