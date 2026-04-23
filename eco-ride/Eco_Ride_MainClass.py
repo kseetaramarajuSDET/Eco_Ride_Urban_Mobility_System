@@ -21,7 +21,7 @@ v1.maintenance_status = 'OnTrip'
 # print(v1)
 
 v2 = ElectricScooter("V103", "HondaShine", 50)
-v2.battery = 80
+v2.battery = 60
 v2.rental_price = 1000
 v2.maintenance_status = 'UnderMaintenance'
 
@@ -104,5 +104,14 @@ vehicle_list = [v1, v2, v3, v4]
 # fleet.get_fleet_analytics(vehicle_list)
 
 # UC11
-fleet.display_sorted_hub("chennai")
-fleet.display_sorted_hub("mumbai")
+# fleet.display_sorted_hub("chennai")
+# fleet.display_sorted_hub("mumbai")
+
+# UC12
+
+fleet.sort_by_battery_percentage("chennai")
+fleet.sort_by_battery_percentage("mumbai")
+print("=*30")
+
+fleet.sort_by_farePrice("chennai", 40, 90)
+fleet.sort_by_farePrice("mumbai", 40, 120)

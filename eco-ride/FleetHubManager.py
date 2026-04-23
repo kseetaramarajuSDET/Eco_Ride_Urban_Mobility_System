@@ -38,6 +38,18 @@ class FleetHubManager:
         else:
             self.__hubs[hub].append(vehicle)
             print(f"Vehicle {vehicle.vehicle_id} successfully parked in {hub}.")
+            # hub_name = input("Enter Hub Name to add vehicle to: ").strip()
+            # if hub_name not in self.__hubs:
+            #     print("Error: Hub not found. Please create it first.")
+            #     return
+            # v_id = input("Enter Vehicle ID to move to this hub:").strip()
+            # # Search for the vehicle in your global inventory
+            # target_vehicle = next((v for v in vehicle_list if v.vehicle_id == v_id), None)
+            # if target_vehicle:
+            #     self.__hubs[hub_name].append(target_vehicle)
+            #     print(f"Vehicle '{target_vehicle}' added to hub '{hub_name}' !")
+            # else:
+            #     print("Error: Vehicle ID not found in system inventory.")
 
     def search_vehicle_by_battery_percentage(self, hub, battery_percentage):
         if hub not in self.__hubs:
@@ -104,7 +116,7 @@ class FleetHubManager:
         print("=" * 30)
         print(f" TOTAL FLEET SIZE  : {len(all_vehicles)}")
 
-    def display_sorted_hub(self, hub_name):
+    def sort_by_model(self, hub_name):
         if hub_name not in self.__hubs:
             print("Hub not found.")
             return
@@ -120,15 +132,38 @@ class FleetHubManager:
             # This automatically calls the __str__ method we wrote above!
             print(vehicle)
 
-# hub_name = input("Enter Hub Name to add vehicle to: ").strip()
-# if hub_name not in self.__hubs:
-#     print("Error: Hub not found. Please create it first.")
-#     return
-# v_id = input("Enter Vehicle ID to move to this hub:").strip()
-# # Search for the vehicle in your global inventory
-# target_vehicle = next((v for v in vehicle_list if v.vehicle_id == v_id), None)
-# if target_vehicle:
-#     self.__hubs[hub_name].append(target_vehicle)
-#     print(f"Vehicle '{target_vehicle}' added to hub '{hub_name}' !")
-# else:
-#     print("Error: Vehicle ID not found in system inventory.")
+    def sort_by_battery_percentage(self, hub_name):
+        if hub_name not in self.__hubs:
+            print("Hub not found.")
+            return
+
+        original_list = self.__hubs[hub_name]
+
+        sorted_list = sorted(original_list, key=lambda v: v.battery, reverse=True)
+        print(f"\n--- Sorted Vehicles Based On Battery Percentage in {hub_name} ---")
+        for vehicle in sorted_list:
+            # This automatically calls the __str__ method we wrote above!
+            print(vehicle)
+
+    def sort_by_farePrice(self, hub_name, distance, mins):
+        if hub_name not in self.__hubs:
+            print("Hub not found.")
+            return
+
+        original_list = self.__hubs[hub_name]
+
+        def calculate_fareprice_for_all_type_of_vehicles(vehicle):
+            if isinstance(vehicle, ElectricCar):
+                return vehicle.calculate_trip_cost(distance)
+            elif isinstance(vehicle, ElectricScooter):
+                return vehicle.calculate_trip_cost(mins)
+            else:
+                print(f"Vehicle {vehicle.vehicle_id} not found.")
+                return 0
+
+        sorted_list = sorted(original_list, key=calculate_fareprice_for_all_type_of_vehicles)
+
+        print(f"\n--- Sorted Vehicles Based On Fare Price in {hub_name} ---")
+        for vehicle in sorted_list:
+            # This automatically calls the __str__ method we wrote above!
+            print(f"{vehicle} | Fare: ${calculate_fareprice_for_all_type_of_vehicles(vehicle):.2f}")
