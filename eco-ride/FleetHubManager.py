@@ -57,6 +57,28 @@ class FleetHubManager:
             print(" Vehicles Which Having More Battery Percentage Than " + str(battery_percentage))
             print(vehicle)
 
+    def get_categorized_view(self, vehicle_list):
+        # UC 9: Mapping Dictionary
+        category_map = {
+            "ElectricCar": [],
+            "ElectricScooter": []
+        }
+
+        # Sorting the vehicles into the map
+        for v in vehicle_list:
+            if isinstance(v, ElectricCar):
+                category_map["ElectricCar"].append(v)
+            elif isinstance(v, ElectricScooter):
+                category_map["ElectricScooter"].append(v)
+
+        # Displaying the Categorized View
+        for v_type, v_list in category_map.items():
+            print(f"\n=== {v_type.upper()} SECTION ===")
+            if not v_list:
+                print("No vehicles in this category.")
+            else:
+                for v in v_list:
+                    print(v)
 # hub_name = input("Enter Hub Name to add vehicle to: ").strip()
 # if hub_name not in self.__hubs:
 #     print("Error: Hub not found. Please create it first.")

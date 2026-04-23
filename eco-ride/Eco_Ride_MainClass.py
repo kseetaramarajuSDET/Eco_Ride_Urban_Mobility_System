@@ -89,6 +89,12 @@ fleet.add_vehicle("mumbai", v4)
 
 # UC8
 
-fleet.search_vehicle_by_battery_percentage("chennai", 70)
-print("---------------")
-fleet.search_vehicle_by_battery_percentage("mumbai", 70)
+# fleet.search_vehicle_by_battery_percentage("chennai", 70)
+# print("---------------")
+# fleet.search_vehicle_by_battery_percentage("mumbai", 70)
+
+# UC9
+
+vehicle_list = [v1, v2, v3, v4]
+
+fleet.get_categorized_view(vehicle_list)
