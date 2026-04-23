@@ -75,7 +75,7 @@ fleet = FleetHubManager()
 # fleet.add_vehicle(vehicle_list)
 
 
-# UC8
+# UC7
 
 fleet.add_hub("chennai")
 fleet.add_hub("mumbai")
@@ -83,6 +83,12 @@ fleet.add_vehicle("chennai", v1)
 fleet.add_vehicle("chennai", v2)
 fleet.add_vehicle("mumbai", v3)
 fleet.add_vehicle("mumbai", v4)
-fleet.add_vehicle("chennai", v1)
-fleet.display_all_hubs()
+# fleet.add_vehicle("chennai", v1)
+# fleet.display_all_hubs()
 
+
+# UC8
+
+fleet.search_vehicle_by_battery_percentage("chennai", 70)
+print("---------------")
+fleet.search_vehicle_by_battery_percentage("mumbai", 70)

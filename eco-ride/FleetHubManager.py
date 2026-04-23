@@ -39,6 +39,24 @@ class FleetHubManager:
             self.__hubs[hub].append(vehicle)
             print(f"Vehicle {vehicle.vehicle_id} successfully parked in {hub}.")
 
+    def search_vehicle_by_battery_percentage(self, hub, battery_percentage):
+        if hub not in self.__hubs:
+            print(f"Hub '{hub}' not registered !")
+            return
+
+        vehicle_list = self.__hubs[hub]
+
+        result_list = list(filter(lambda v: v.battery > battery_percentage, vehicle_list))
+
+        # Display results
+        print(f"\n--- High Battery Vehicles in {hub} ---")
+
+        if not result_list:
+            print("No vehicles found with battery percentage More Than " + str(battery_percentage))
+        for vehicle in result_list:
+            print(" Vehicles Which Having More Battery Percentage Than " + str(battery_percentage))
+            print(vehicle)
+
 # hub_name = input("Enter Hub Name to add vehicle to: ").strip()
 # if hub_name not in self.__hubs:
 #     print("Error: Hub not found. Please create it first.")
