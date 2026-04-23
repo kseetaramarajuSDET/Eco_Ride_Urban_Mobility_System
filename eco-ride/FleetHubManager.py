@@ -104,6 +104,22 @@ class FleetHubManager:
         print("=" * 30)
         print(f" TOTAL FLEET SIZE  : {len(all_vehicles)}")
 
+    def display_sorted_hub(self, hub_name):
+        if hub_name not in self.__hubs:
+            print("Hub not found.")
+            return
+
+        original_list = self.__hubs[hub_name]
+
+        # UC 11: Sort by Model name using a Lambda key
+        # It compares 'Tesla' vs 'Audi' vs 'BMW'
+        sorted_list = sorted(original_list, key=lambda v: v.model)
+
+        print(f"\n--- Alphabetical Fleet in {hub_name} ---")
+        for vehicle in sorted_list:
+            # This automatically calls the __str__ method we wrote above!
+            print(vehicle)
+
 # hub_name = input("Enter Hub Name to add vehicle to: ").strip()
 # if hub_name not in self.__hubs:
 #     print("Error: Hub not found. Please create it first.")

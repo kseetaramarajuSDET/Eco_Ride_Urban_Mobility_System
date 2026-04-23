@@ -101,4 +101,8 @@ vehicle_list = [v1, v2, v3, v4]
 
 # UC10
 
-fleet.get_fleet_analytics(vehicle_list)
+# fleet.get_fleet_analytics(vehicle_list)
+
+# UC11
+fleet.display_sorted_hub("chennai")
+fleet.display_sorted_hub("mumbai")
