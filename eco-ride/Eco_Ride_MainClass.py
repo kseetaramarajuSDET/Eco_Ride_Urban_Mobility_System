@@ -13,17 +13,17 @@ from Vehicle import Vehicle
 # vehicle.rental_price = 2000
 # print(vehicle)
 
-v1 = ElectricCar("V102", "HondaI20", 10)
-v1.battery = 80
-v1.rental_price = 3000
-v1.maintenance_status = 'OnTrip'
+# v1 = ElectricCar("V102", "HondaI20", 10)
+# v1.battery = 80
+# v1.rental_price = 3000
+# v1.maintenance_status = 'OnTrip'
 
 # print(v1)
 
-v2 = ElectricScooter("V103", "HondaShine", 50)
-v2.battery = 60
-v2.rental_price = 1000
-v2.maintenance_status = 'UnderMaintenance'
+# v2 = ElectricScooter("V103", "HondaShine", 50)
+# v2.battery = 60
+# v2.rental_price = 1000
+# v2.maintenance_status = 'UnderMaintenance'
 
 # print(v2)
 
@@ -45,16 +45,16 @@ v2.maintenance_status = 'UnderMaintenance'
 
 
 #  UC6
-v3 = ElectricCar("V105", "BMW", 6)
-v3.battery = 90
-v3.rental_price = 6000
-v3.maintenance_status = 'Available'
+# v3 = ElectricCar("V105", "BMW", 6)
+# v3.battery = 90
+# v3.rental_price = 6000
+# v3.maintenance_status = 'Available'
 
 # print(v3)
-v4 = ElectricScooter("V104", "pulser220", 50)
-v4.battery = 70
-v4.rental_price = 2000
-v4.maintenance_status = 'Broken'
+# v4 = ElectricScooter("V104", "pulser220", 50)
+# v4.battery = 70
+# v4.rental_price = 2000
+# v4.maintenance_status = 'Broken'
 
 # vehicle_list = [v1, v2, v3, v4, v1]
 
@@ -77,12 +77,12 @@ fleet = FleetHubManager()
 
 # UC7
 
-fleet.add_hub("chennai")
-fleet.add_hub("mumbai")
-fleet.add_vehicle("chennai", v1)
-fleet.add_vehicle("chennai", v2)
-fleet.add_vehicle("mumbai", v3)
-fleet.add_vehicle("mumbai", v4)
+# fleet.add_hub("chennai")
+# fleet.add_hub("mumbai")
+# fleet.add_vehicle("chennai", v1)
+# fleet.add_vehicle("chennai", v2)
+# fleet.add_vehicle("mumbai", v3)
+# fleet.add_vehicle("mumbai", v4)
 # fleet.add_vehicle("chennai", v1)
 # fleet.display_all_hubs()
 
@@ -95,7 +95,7 @@ fleet.add_vehicle("mumbai", v4)
 
 # UC9
 
-vehicle_list = [v1, v2, v3, v4]
+# vehicle_list = [v1, v2, v3, v4]
 
 # fleet.get_categorized_view(vehicle_list)
 
@@ -109,9 +109,14 @@ vehicle_list = [v1, v2, v3, v4]
 
 # UC12
 
-fleet.sort_by_battery_percentage("chennai")
-fleet.sort_by_battery_percentage("mumbai")
-print("=*30")
+# fleet.sort_by_battery_percentage("chennai")
+# fleet.sort_by_battery_percentage("mumbai")
+# print("=*30")
+#
+# fleet.sort_by_farePrice("chennai", 40, 90)
+# fleet.sort_by_farePrice("mumbai", 40, 120)
 
-fleet.sort_by_farePrice("chennai", 40, 90)
-fleet.sort_by_farePrice("mumbai", 40, 120)
+
+# fleet.save_to_csv_file("fleet.csv")
+
+fleet.load_from_csv_file("fleet.csv")

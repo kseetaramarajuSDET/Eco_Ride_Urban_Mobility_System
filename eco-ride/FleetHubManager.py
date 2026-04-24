@@ -1,3 +1,5 @@
+import csv
+
 from Vehicle import Vehicle
 from ElectricCar import *
 from ElectricScooter import *
@@ -167,3 +169,57 @@ class FleetHubManager:
         for vehicle in sorted_list:
             # This automatically calls the __str__ method we wrote above!
             print(f"{vehicle} | Fare: ${calculate_fareprice_for_all_type_of_vehicles(vehicle):.2f}")
+
+    def save_to_csv_file(self, file_name):
+        if len(self.__hubs) == 0:
+            print("No hubs found.")
+            return
+
+        header = ["Hub_Name", "Vehicle_Type", "Vehicle_Id", "Model", "Battery_Percentage", "Maintenance_Status",
+                  "Rental_Price"]
+
+        with open(file_name, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(header)
+
+            for hub in self.__hubs:
+                vehicle_list = self.__hubs[hub]
+                for v in vehicle_list:
+                    v_type = v.__class__.__name__
+                    writer.writerow(
+                        [hub, v_type, v.vehicle_id, v.model, v.battery, v.maintenance_status, v.rental_price])
+
+        print(f"--- Data saved to {file_name} successfully ---")
+
+    def load_from_csv_file(self, file_name):
+
+        try:
+            with open(file_name, 'r') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    hub_name = row["Hub_Name"]
+                    Vehicle_Type = row["Vehicle_Type"]
+                    Vehicle_Id = row["Vehicle_Id"]
+                    Model = row["Model"]
+                    Battery_Percentage = int(row["Battery_Percentage"])
+                    Maintenance_Status = row["Maintenance_Status"]
+                    Rental_Price = float(row["Rental_Price"])
+
+                    if Vehicle_Type == "ElectricScooter":
+                        Vehicle = ElectricScooter(Vehicle_Id, Model, 50)
+                        Vehicle.battery = Battery_Percentage
+                        Vehicle.maintenance_status = Maintenance_Status
+                        Vehicle.rental_price = Rental_Price
+                    elif Vehicle_Type == "ElectricCar":
+                        Vehicle = ElectricCar(Vehicle_Id, Model, 10)
+                        Vehicle.battery = Battery_Percentage
+                        Vehicle.maintenance_status = Maintenance_Status
+                        Vehicle.rental_price = Rental_Price
+
+                    self.add_hub(hub_name)
+                    self.add_vehicle(hub_name, Vehicle)
+
+            self.display_all_hubs()
+            print(f"--- Data loaded from {file_name} successfully ---")
+        except FileNotFoundError:
+            print("File not found.")

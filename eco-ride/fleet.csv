@@ -1,0 +1,5 @@
+Hub_Name,Vehicle_Type,Vehicle_Id,Model,Battery_Percentage,Maintenance_Status,Rental_Price
+chennai,ElectricCar,V102,HondaI20,80,OnTrip,3000
+chennai,ElectricScooter,V103,HondaShine,60,UnderMaintenance,1000
+mumbai,ElectricCar,V105,BMW,90,Available,6000
+mumbai,ElectricScooter,V104,pulser220,70,Broken,2000
