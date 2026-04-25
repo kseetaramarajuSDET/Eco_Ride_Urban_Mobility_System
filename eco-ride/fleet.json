@@ -1,0 +1,42 @@
+{
+    "chennai": [
+        {
+            "vehicle_id": "V102",
+            "model": "HondaI20",
+            "_Vehicle__battery": 80,
+            "_Vehicle__maintenance_status": "OnTrip",
+            "_Vehicle__rental_price": 3000,
+            "seating_capacity": 10,
+            "v_type": "ElectricCar"
+        },
+        {
+            "vehicle_id": "V103",
+            "model": "HondaShine",
+            "_Vehicle__battery": 60,
+            "_Vehicle__maintenance_status": "UnderMaintenance",
+            "_Vehicle__rental_price": 1000,
+            "max_speed_limit": 50,
+            "v_type": "ElectricScooter"
+        }
+    ],
+    "mumbai": [
+        {
+            "vehicle_id": "V105",
+            "model": "BMW",
+            "_Vehicle__battery": 90,
+            "_Vehicle__maintenance_status": "Available",
+            "_Vehicle__rental_price": 6000,
+            "seating_capacity": 6,
+            "v_type": "ElectricCar"
+        },
+        {
+            "vehicle_id": "V104",
+            "model": "pulser220",
+            "_Vehicle__battery": 70,
+            "_Vehicle__maintenance_status": "Broken",
+            "_Vehicle__rental_price": 2000,
+            "max_speed_limit": 50,
+            "v_type": "ElectricScooter"
+        }
+    ]
+}

@@ -1,4 +1,5 @@
 import csv
+import json
 
 from Vehicle import Vehicle
 from ElectricCar import *
@@ -223,3 +224,53 @@ class FleetHubManager:
             print(f"--- Data loaded from {file_name} successfully ---")
         except FileNotFoundError:
             print("File not found.")
+
+    def save_to_json(self, file_name):
+        if len(self.__hubs) == 0:
+            print("No hubs found.")
+            return
+        data_to_save = {}
+
+        for hub, vehicle_list in self.__hubs.items():
+            data_to_save[hub] = []
+            if len(vehicle_list) == 0:
+                data_to_save[hub] = []
+                return
+            for v in vehicle_list:
+                v_dict = v.__dict__.copy()
+                v_dict["v_type"] = v.__class__.__name__
+                data_to_save[hub].append(v_dict)
+
+        with open(file_name, 'w') as jsonfile:
+            json.dump(data_to_save, jsonfile, indent=4)
+
+        print(f"--- Successfully exported to {file_name} ---")
+
+    def load_from_json(self, file_name):
+        try:
+            with open(file_name, 'r') as jsonfile:
+                raw_data = json.load(jsonfile)
+                for hub, vehicle_list in raw_data.items():
+                    self.add_hub(hub)
+                    for v in vehicle_list:
+                        v_type = v["v_type"]
+                        if v_type == "ElectricScooter":
+                            v_obj = ElectricScooter(v["vehicle_id"], v["model"], v["max_speed_limit"])
+                            v_obj.battery = v["_Vehicle__battery"]
+                            v_obj.maintenance_status = v["_Vehicle__maintenance_status"]
+                            v_obj.rental_price = v["_Vehicle__rental_price"]
+                        elif v_type == "ElectricCar":
+                            v_obj = ElectricCar(v["vehicle_id"], v["model"], v["seating_capacity"])
+                            v_obj.battery = v["_Vehicle__battery"]
+                            v_obj.maintenance_status = v["_Vehicle__maintenance_status"]
+                            v_obj.rental_price = v["_Vehicle__rental_price"]
+                        self.add_vehicle(hub, v_obj)
+
+                print(f"--- Data loaded from {file_name} successfully ---")
+                print(self.display_all_hubs())
+        except FileNotFoundError:
+            # Occurs if the file doesn't exist at all
+            print(f"⚠️  Notice: The file '{file_name}' does not exist.")
+        except json.JSONDecodeError:
+            # Occurs if the file exists but the content is "Garbage" or broken
+            print(f"❌ Error: '{file_name}' is corrupted! It contains invalid JSON formatting.")

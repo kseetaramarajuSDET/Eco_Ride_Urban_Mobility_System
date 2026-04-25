@@ -49,8 +49,8 @@ from Vehicle import Vehicle
 # v3.battery = 90
 # v3.rental_price = 6000
 # v3.maintenance_status = 'Available'
-
 # print(v3)
+
 # v4 = ElectricScooter("V104", "pulser220", 50)
 # v4.battery = 70
 # v4.rental_price = 2000
@@ -86,7 +86,6 @@ fleet = FleetHubManager()
 # fleet.add_vehicle("chennai", v1)
 # fleet.display_all_hubs()
 
-
 # UC8
 
 # fleet.search_vehicle_by_battery_percentage("chennai", 70)
@@ -119,4 +118,10 @@ fleet = FleetHubManager()
 
 # fleet.save_to_csv_file("fleet.csv")
 
-fleet.load_from_csv_file("fleet.csv")
+# fleet.load_from_csv_file("fleet.csv")
+
+# fleet.display_all_hubs()
+
+# fleet.save_to_json("fleet.json")
+
+fleet.load_from_json("fleet.json")
